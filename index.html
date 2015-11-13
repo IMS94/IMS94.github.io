@@ -123,7 +123,7 @@
                             <li>
                                 <h1>Mustank 2016</h1>
                                 <p>
-                                    "Mustank 2016" is the client side implementation of a multiplayer tank game which consists of an intelligent client. The program is developed by the team "The ටැංකියා". Go ahead and read full descriptions about the game and enjoy the most intelligent AI you will ever see. 
+                                    "Mustank 2016" is the client side implementation of a multiplayer tank game which consists of an intelligent client. The program is developed by the team "The ටැංකියා". Go ahead and read full descriptions about the game and enjoy the most intelligent AI you will ever see.
                                 </p>
 
                             </li>
@@ -153,7 +153,7 @@
                         <div class="feature-content">
                             <h1>Client-Server Model</h1>
                             <p>
-                                In this model, server component provides a function or service to one or many clients, which initiate requests for such services. This multipayer game is based on client-server artchitecture, where a maximum of 5 clients can connect to the server at a given time and play together. The most important thing here is that the clients are intelligent. Actually, they are Artificial Intelligents. The game rules are described below. 
+                                In this model, server component provides a function or service to one or many clients, which initiate requests for such services. This multipayer game is based on client-server artchitecture, where a maximum of 5 clients can connect to the server at a given time and play together. The most important thing here is that the clients are intelligent. Actually, they are Artificial Intelligents. The game rules are described below.
                             </p>
                             <a href="https://en.wikipedia.org/wiki/Client–server_model" class="read-more-btn" target="_blank">Read More <i class="fa fa-chevron-circle-right"></i></a>
                         </div>
@@ -163,7 +163,7 @@
                             <i class="fa fa-code"></i>
                         </div>
                         <div class="feature-content">
-                            <h1>why C#?</h1>
+                            <h1>Why C#?</h1>
                             <p>
                                 C# is an elegant, simple, type-safe, object-oriented language that allows enterprise programmers to build a breadth of applications. C# also gives you the capability to build durable system-level components by virtue of the features like, full COM/Platform support for existing code integration, robustness through garbage collection and type safety, security provided through intrinsic code trust mechanisms and full support of extensible metadata concepts.
                             </p>
@@ -189,7 +189,109 @@
     </section>
 
 
+    <section class="container-fluid">
+        <div class="container-fluid col-md-8">
 
+            <style>
+                /*#game_rules a {
+                    font-size: 30px;
+                    color: #24374b
+                }
+                
+                #game_rules a:hover {
+                    color: #73d0da
+                }*/
+                
+                #game_rules {
+                    margin-bottom: 50px;
+                    padding-left: 10%
+                }
+                
+                #game_rules_content h3 {
+                    color: #0942de;
+                }
+                
+                #game_rules_content ul {
+                    padding-left: 10%
+                }
+            </style>
+
+            <div class="container-fluid" id="game_rules">
+                <div class="feature-icon">
+                    <i class="fa fa-rocket"></i>
+                </div>
+                <div class="feature-content">
+                    <h1 href="#game_rules_content">
+                        Game Rules 
+                    </h1>
+
+                    <p>
+                        An introduction of the gameplay and the rules
+                    </p>
+                    <a href="#game_rules" class="read-more-btn" onclick="$('#game_rules_content').slideToggle()">
+                            Read More 
+                            <i class="fa fa-chevron-circle-right"></i>
+                        </a>
+
+                    <div class="container-fluid" id="game_rules_content" hidden="hidden">
+                        <h3>Basics</h3>
+                        <p>
+                            The game objective is; clients acting as “tanks” accumulating points while making sure of their own survival. The tanks are capable of shooting shells (bullets) and these bullets will move 3 times faster than a tank. The environment is made out of four kinds of blocks
+
+                            <ul>
+                                <li>Brick wall</li>
+                                <li>Stone wall</li>
+                                <li>Water</li>
+                                <li>Blank cell</li>
+                            </ul>
+                        </p>
+
+                        <h3>Initialization</h3>
+                        <p>
+                            A timer is initiated when the first player registers for a game. When the 5th player joins the game or in the event of the timer expiring, the server will issue the game starting message to all the players that are already registered with the server. Any join request by a client hereafter until the end of the game instance will be rejected. The game will be played in a 20x20 grid
+                        </p>
+
+                        <h3>Moving and Shooting</h3>
+                        <p>
+                            A tank can move, rotate and shoot. If the request direction is the same as the current direction, the tank will be moved in the said direction. Otherwise the tank will be rotated to face the requested direction. There will be obstacles in the map, water and bricks.
+                        </p>
+
+                        <h3>Acquiring Coins</h3>
+                        <p>
+                            For two reasons coins will appear on the map.
+                        </p>
+                        <ul>
+                            <li>Random treasures</li>
+                            <li>Spoils of war</li>
+                        </ul>
+
+                        <p>The players are supposed to collect them by moving to the cell where the coin pile is. When a player collects a pile of coins, his coin count and point count gets increased by that amount.
+                        </p>
+
+
+                        <h3>Life Packs</h3>
+                        <p>
+                            Similar to the piles of coins, life packs will appear on empty cells. The method of taking a life pack is similar to the method of taking a treasure. When a client takes a life pack, 20% of the initial health will be added to their health. Note that it is possible for a client, at some point of the game, to have a health value which is greater than the initial health value.
+                        </p>
+
+                        <h3>Killing</h3>
+                        <p>
+                            A bullet hit will reduce the health of a tank by 10% of the initial health A player who has health of 0% (or less) will die and drop their coins at the point of death. But they will not lose the current points. However 25% of the points of the victim will be added to the killer. The dropped pile of coins is not different from a randomly created pile of coins. Thus the killer does not have a claim on it, it can be picked up by any remaining client.
+                        </p>
+
+                        <h3>Penalties and Death</h3>
+                        <p>
+                            If a client hits an obstacle (a standing brick wall or a stone wall), a fixed number of points will be deducted from the client. The deduction takes place per each turn, thus if a client keeps hitting an obstacle, it will continuously lose points.
+                        </p>
+                        <p>
+                            Clients can shoot over water. But if the client tries to move the tank in to a cell with water, the client will be killed. Since there is no killer here other than the environment, no body will be credited with points and the coins of the slain client will not be dropped on the ground. But dead clients get their coin count set to zero nevertheless.
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
 
@@ -220,9 +322,9 @@
                     <div class="col-md-6">
                         <h1>Mustank 2016 - Coming Soon ....</h1>
                         <p>
-                            Await for the best ever intelligent gaming client that you will ever see. Currently we are working on the desktop application. 
+                            Await for the best ever intelligent gaming client that you will ever see. Currently we are working on the desktop application.
                         </p>
-                        
+
                         <blockquote class="team-quote">
                             <div class="avatar"><img src="img/production/stalin.png" alt="User Avatar"></div>
                             <p>"History shows that there are no invincible armies and that there never have been" - Joseph Stalin</p>
@@ -230,7 +332,7 @@
                                 <a href=""><img src="img/Using/logo4.png" alt="The Tankiya"></a>
                             </div>
                         </blockquote>
-                        <a href="#" class="download-btn">Download! <i class="fa fa-download"></i></a>
+                        <a href="#showcaseSlider" class="download-btn">Download! <i class="fa fa-download"></i></a>
                     </div>
                 </div>
             </div>
@@ -259,13 +361,13 @@
                 <ul class="grid">
                     <li>
                         <figure>
-                            <img src="img/production/SC.unity.jpg" alt="Screenshot 01">
+                            <img src="img/production/SC.interface.jpg" alt="Screenshot 01">
                             <figcaption>
                                 <div class="caption-content">
-                                    <a href="img/production/SC.unity.jpg" class="single_image">
+                                    <a href="img/production/SC.interface.jpg" class="single_image">
                                         <i class="fa fa-search"></i>
                                         <br>
-                                        <p>Unity Game Engine</p>
+                                        <p>Stunning Interface</p>
                                     </a>
                                 </div>
                             </figcaption>
@@ -273,13 +375,13 @@
                     </li>
                     <li>
                         <figure>
-                            <img src="img/production/SC.Csharp.jpg" alt="Screenshot 01">
+                            <img src="img/production/SC.time.jpg" alt="Screenshot 01">
                             <figcaption>
                                 <div class="caption-content">
-                                    <a href="img/production/SC.Csharp.jpg" class="single_image">
+                                    <a href="img/production/SC.time.jpg" class="single_image">
                                         <i class="fa fa-search"></i>
                                         <br>
-                                        <p>C# coding</p>
+                                        <p>Responsive AI</p>
                                     </a>
                                 </div>
                             </figcaption>
@@ -301,13 +403,13 @@
                     </li>
                     <li>
                         <figure>
-                            <img src="img/production/SC.interface.jpg" alt="Screenshot 01">
+                            <img src="img/production/SC.Csharp.jpg" alt="Screenshot 01">
                             <figcaption>
                                 <div class="caption-content">
-                                    <a href="img/production/SC.interface.jpg" class="single_image">
+                                    <a href="img/production/SC.Csharp.jpg" class="single_image">
                                         <i class="fa fa-search"></i>
                                         <br>
-                                        <p>Stunning Interface</p>
+                                        <p>C# Coding</p>
                                     </a>
                                 </div>
                             </figcaption>
@@ -321,13 +423,27 @@
                 <ul class="grid">
                     <li>
                         <figure>
+                            <img src="img/production/SC.Multiplayer.jpg" alt="Screenshot 01">
+                            <figcaption>
+                                <div class="caption-content">
+                                    <a href="img/production/SC.Multiplayer.jpg" class="single_image">
+                                        <i class="fa fa-search"></i>
+                                        <br>
+                                        <p>Multiplay</p>
+                                    </a>
+                                </div>
+                            </figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure>
                             <img src="img/production/SC.unity.jpg" alt="Screenshot 01">
                             <figcaption>
                                 <div class="caption-content">
-                                    <a href="img/large/01.jpg" class="single_image">
+                                    <a href="img/production/SC.unity.jpg" class="single_image">
                                         <i class="fa fa-search"></i>
                                         <br>
-                                        <p>Unity Game Engine</p>
+                                        <p>Unity</p>
                                     </a>
                                 </div>
                             </figcaption>
@@ -335,13 +451,13 @@
                     </li>
                     <li>
                         <figure>
-                            <img src="img/production/SC.Csharp.jpg" alt="Screenshot 01">
+                            <img src="img/production/SC.pc2.jpg" alt="Screenshot 01">
                             <figcaption>
                                 <div class="caption-content">
-                                    <a href="img/large/02.jpg" class="single_image">
+                                    <a href="img/production/SC.pc2.jpg" class="single_image">
                                         <i class="fa fa-search"></i>
                                         <br>
-                                        <p>C# coding</p>
+                                        <p>Programming Challenge II Module</p>
                                     </a>
                                 </div>
                             </figcaption>
@@ -349,27 +465,13 @@
                     </li>
                     <li>
                         <figure>
-                            <img src="img/production/SC.intelligent.jpg" alt="Screenshot 01">
+                            <img src="img/production/SC.competition.jpg" alt="Screenshot 01">
                             <figcaption>
                                 <div class="caption-content">
-                                    <a href="img/large/03.jpg" class="single_image">
+                                    <a href="img/production/SC.competition.jpg" class="single_image">
                                         <i class="fa fa-search"></i>
                                         <br>
-                                        <p>Intelligent Client</p>
-                                    </a>
-                                </div>
-                            </figcaption>
-                        </figure>
-                    </li>
-                    <li>
-                        <figure>
-                            <img src="img/production/SC.interface.jpg" alt="Screenshot 01">
-                            <figcaption>
-                                <div class="caption-content">
-                                    <a href="img/large/04.jpg" class="single_image">
-                                        <i class="fa fa-search"></i>
-                                        <br>
-                                        <p>Stunning Interface</p>
+                                        <p>Competition</p>
                                     </a>
                                 </div>
                             </figcaption>
@@ -391,7 +493,7 @@
     </section>
 
     <section class="features-list" id="aboutus">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12 ">
 
@@ -405,9 +507,10 @@
                                 Undergraduate at Department of Computer Science and Engineering, University of Moratuwa. Has experience in object oriented languages like C#, JAVA and web doveloping. Focuesd on web developing and intelligent algorithm development aspects in this project.
                             </p>
                             <p style="font-size:30px">
-                                <a href="#" style="margin-right:10px"><i class="fa fa-facebook"></i></a>
-                                <a href="#" style="margin-right:10px"><i class="fa fa-linkedin-square"></i></a>
-                                <a href="#" style="margin-right:10px"><i class="fa fa-twitter"></i></a>
+                                <a href="https://lk.linkedin.com/in/pasindukanchana" target="_blank"
+                                   style="margin-right:10px"><i class="fa fa-linkedin-square"></i></a>
+                                <a href="https://twitter.com/PasinduZee" target="_blank"
+                                   style="margin-right:10px"><i class="fa fa-twitter"></i></a>
                             </p>
                         </div>
                     </div>
@@ -418,14 +521,14 @@
                             </figure>
                             <h1>Imesha Sudasingha</h1>
                             <p>
-                                Undergraduate at Department of Computer Science and Engineering, University of Moratuwa. Has experience in object oriented languages like C#, JAVA and web developing. Focuesd on web developing and user interface development aspects in this project.  
+                                Undergraduate at Department of Computer Science and Engineering, University of Moratuwa. Has experience in object oriented languages like C#, JAVA and web developing. Focuesd on web developing and user interface development aspects in this project.
                             </p>
-                            
+
                             <p style="font-size:30px">
-                                <a href="#" style="margin-right:10px"><i class="fa fa-facebook"></i></a>
-                                <a href="#" style="margin-right:10px">
+                                <a href="https://lk.linkedin.com/in/imeshasudasingha" style="margin-right:10px" target="_blank">
                                     <i class="fa fa-linkedin-square"></i></a>
-                                <a href="#" style="margin-right:10px"><i class="fa fa-twitter"></i></a>
+                                <a href="https://twitter.com/Imesha94" style="margin-right:10px" target="_blank">
+                                    <i class="fa fa-twitter"></i></a>
                             </p>
                         </div>
                     </div>
@@ -442,7 +545,7 @@
                     <h1 class="footer-logo">
 						<img src="img/Using/black.png" alt="Footer Logo Blue">
 						</h1>
-                    <p>Mustank 2016 - <a href="#">Licence</a> - Designed &amp; Developed by <a href="#">The Tankiya</a></p>
+                    <p>Mustank 2016 - <a href="#">Licence</a> - Designed &amp; Developed by <a href="#">Imesha Sudasingha and Pasindu Kanchana</a></p>
                 </div>
                 <div class="col-md-9">
                     <ul class="footer-nav">
@@ -458,8 +561,8 @@
     <div class="overlay overlay-boxify">
         <nav>
             <ul>
-                <li><a href="#about"><i class="fa fa-heart"></i>About</a></li>
-                <li><a href="#features"><i class="fa fa-flash"></i>Features</a></li>
+                <li><a href="#about"><i class="fa fa-heart"></i>Mustank 2016</a></li>
+                <li><a href="#features"><i class="fa fa-flash"></i>Technologies</a></li>
             </ul>
             <ul>
                 <li><a href="#screenshots"><i class="fa fa-desktop"></i>Screenshots</a></li>
